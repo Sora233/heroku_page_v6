@@ -1,0 +1,18 @@
+<%= render 'shared/alert' %>
+<%= render 'shared/page_title', page_title: "Menu" %>
+<ul>
+  <li>
+    <%= link_to 'posts', posts_path %>
+  </li>
+</ul>
+<br/>
+<% if current_user.nil? %>
+  <%= link_to 'Log in', new_user_session_path %>
+<% else %>
+  <center><h3>Login as <%= current_user.username %></h3></center>
+  <% if can? :admin_index, User %>
+    <%= link_to 'User List', admins_users_path %><br/>
+  <% end %>
+  <%= link_to 'Profile', user_path(current_user) %><br/>
+  <%= link_to 'Log Out', destroy_user_session_path, method: :delete %><br/>
+<% end %>

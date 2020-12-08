@@ -1,0 +1,22 @@
+<%= render 'shared/page_title', page_title: "Post List" %>
+<% if @posts.empty? %>
+  No Posts Yet
+<% else %>
+  <ul>
+    <% @posts.each do |post| %>
+      <% cache post do %>
+        <li>
+          <%= link_to "#{post.title} #{post.published ? "" : "[Draft]"}", post_path(post) %>
+          By: <%= post.user.username %>
+        </li>
+        <br/>
+      <% end %>
+    <% end %>
+  </ul>
+  <%= paginate @posts %>
+<% end %>
+<br/>
+<% if can? :new, Post %>
+  <%= link_to 'New Post', new_post_path %><br/>
+<% end %>
+<%= link_to 'Back To Home', root_path %>

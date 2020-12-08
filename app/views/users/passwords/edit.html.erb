@@ -1,0 +1,18 @@
+<%= render 'shared/page_title', page_title: "Change your password" %>
+<%= render "shared/alert", resource: resource %>
+<%= simple_form_for(resource, :as => resource_name, :url => password_path(resource_name), method: :put, :html => { :class => 'form-horizontal' }) do |f| %>
+  <%= f.hidden_field :reset_password_token %>
+
+  <%= f.input :password, text: "New password", hint: "#{@minimum_password_length} characters minimum" %>
+
+  <%= f.input :password_confirmation %>
+
+  <div class="form-group">
+    <%= render "shared/captcha", f: f %>
+  </div>
+
+  <%= f.button :submit, "Change my password", class: "btn btn-primary" %>
+
+<% end %>
+
+<%= render "users/shared/links" %>

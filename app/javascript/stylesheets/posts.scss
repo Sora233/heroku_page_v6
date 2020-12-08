@@ -1,0 +1,11 @@
+// Place all the styles related to the posts controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.editor-container {
+  height: 375px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+

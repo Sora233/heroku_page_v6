@@ -1,0 +1,13 @@
+<h2>User List</h2>
+<ul>
+  <% @users.each do |user| %>
+    <% cache user do %>
+      <li>
+        <%= link_to user.username, user_path(user) %>
+        <%= link_to 'Disable', disable_user_path(user), method: :patch if can? :disable, user %>
+        <%= link_to 'Enable', enable_user_path(user), method: :patch if can? :enable, user %>
+      </li>
+    <% end %>
+  <% end %>
+</ul>
+<%= render 'shared/nav' %>

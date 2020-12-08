@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>HerokuPageV6</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
+
+<body>
+<div class="container top-container">
+  <div class="row">
+    <div class="col-md-10 col-xs-12 col-md-12 col-md-offset-1">
+      <%= yield %>
+    </div>
+  </div>
+</div>
+</body>
+</html>
