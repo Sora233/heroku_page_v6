@@ -11,16 +11,16 @@
       </div>
     </div>
   </div>
-  <%= f.submit "Post!", class:"btn btn-default" %>
-  <%# if @post.persisted? %>
+  <% if @post.persisted? %>
     <!--    edit-->
-    <%# unless @post.published %>
-      <%#= f.button :button, "Publish!", type: "submit", name: "post[published]", value: "true", class: "btn btn-primary" %>
-    <%# end %>
-    <%#= f.button :submit, "Save!", class: "btn btn-primary" %>
-  <%# else %>
-    <!--    create-->
-    <%#= f.button :button, "Save!", type: "submit", name: "post[published]", value: "false", class: "btn btn-primary" %>
-    <%#= f.button :button, "Post!", type: "submit", name: "post[published]", value: "true", class: "btn btn-primary" %>
-  <%# end %>
+    <% if @post.published %>
+      <%= f.button :button, "Save", type: "submit", name: "post[published]", value: "true", class: "btn btn-primary" %>
+    <% else %>
+      <%= f.button :button, "Post!", type: "submit", name: "post[published]", value: "true", class: "btn btn-success" %>
+    <% end %>
+  <% else %>
+    <!--        create-->
+    <%= f.button :button, "Post!", type: "submit", name: "post[published]", value: "true", class: "btn btn-success" %>
+    <%= f.button :button, "Save Draft", type: "submit", name: "post[published]", value: "false", class: "btn btn-primary" %>
+  <% end %>
 <% end %>
