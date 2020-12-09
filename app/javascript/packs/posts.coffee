@@ -2,8 +2,7 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 import "quill/dist/quill.snow.css";
-import "quill/dist/quill.bubble.css";
-import Quill from "quill";
+Quill = require("quill")
 
 
 check_id = (id) ->

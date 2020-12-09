@@ -44,7 +44,7 @@ Rails.application.configure do
   # config.action_cable.allowed_request_origins = [ 'http://example.com', /http:\/\/example.*/ ]
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
-  # config.force_ssl = true
+  config.force_ssl = true
 
   # Use the lowest log level to ensure availability of diagnostic information
   # when problems arise.
@@ -55,11 +55,10 @@ Rails.application.configure do
 
   # Use a different cache store in production.
   # config.cache_store = :mem_cache_store
-  config.cache_store = :redis_store, "#{ENV['REDIS_URL']}/#{ENV['CACHE_STORE_INDEX']}/cache", { expires_in: 90.minutes }
-
-  config.action_dispatch.rack_cache = {
-    metastore: "#{ENV['REDIS_URL']}/#{ENV['RAKE_CACHE_INDEX']}/metastore",
-    entitystore: "#{ENV['REDIS_URL']}/#{ENV['RAKE_CACHE_INDEX']}/entitystore"
+  config.cache_store = :redis_cache_store, {
+    url: ENV['REDIS_URL'],
+    connect_timeout: 30, # Defaults to 20 seconds
+    reconnect_attempts: 1, # Defaults to 0
   }
 
   # Use a real queuing backend for Active Job (and separate queues per environment).

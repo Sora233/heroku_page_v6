@@ -13,7 +13,7 @@ require("bootstrap")
 # or the `imagePath` JavaScript helper below.
 #
 images = require.context('../images', true)
-#imagePath = (name) => images(name, true)
+# imagePath = (name) => images(name, true)
 
 require("../stylesheets/application.scss")
 
