@@ -61,3 +61,4 @@ gem 'hiredis'
 gem 'rucaptcha'
 gem 'simple_form'
 gem 'newrelic_rpm'
+gem "aws-sdk-s3", require: false
