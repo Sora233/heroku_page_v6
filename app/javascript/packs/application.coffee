@@ -15,10 +15,10 @@ require("bootstrap")
 images = require.context('../images', true)
 # imagePath = (name) => images(name, true)
 
-require("../stylesheets/application.scss")
+import "../stylesheets/application.scss"
 
-require("./admins")
-require("./home")
-require("./admin/users")
-require("./posts")
-require("./users")
+import "./admins"
+import "./home"
+import "./admin/users"
+import "./posts"
+import "./users"
