@@ -4,7 +4,7 @@
 <% flash.each do |key, value| %>
   <% if value.class == Array %>
     <div class="<%= flash_class(key) %>">
-      <button type="button" class="btn btn-default" data-dismiss="alert">×</button>
+      <button type="button" class="btn btn-default" data-dismiss="alert">&times;</button>
       <% value.each do |message| %>
         <%= message %>
         </br>
@@ -12,7 +12,7 @@
     </div>
   <% else %>
     <div class="<%= flash_class(key) %>">
-      <button type="button" class="btn btn-default" data-dismiss="alert">×</button>
+      <button type="button" class="btn btn-default" data-dismiss="alert">&times;</button>
       <%= value %>
     </div>
   <% end %>

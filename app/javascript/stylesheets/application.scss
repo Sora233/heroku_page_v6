@@ -11,7 +11,7 @@
  * It is generally better to create a new file per style scope.
  */
 
-@import "bootstrap/scss/bootstrap";
+@import "~bootstrap/scss/bootstrap";
 @import "admin/users";
 @import "users";
 @import "home";
@@ -19,6 +19,12 @@
 @import "actiontext.scss";
 
 .page-title {
-  padding-top: 15px;
-  padding-bottom: 15px;
+  @extend .my-lg-3;
+  @extend .my-md-2;
+  @extend .my-sm-1;
+  @extend .p-2;
+}
+
+.navbar-container {
+  @extend .mb-2;
 }

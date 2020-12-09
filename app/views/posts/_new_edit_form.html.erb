@@ -1,26 +1,25 @@
 <%= simple_form_for @post, :html => { :class => 'form-horizontal' } do |f| %>
-  <div class="form-group">
+  <%= f.input :title %>
 
-    <%= f.input :title %>
-  </div>
-  <div class="form-group">
-
-    <%= f.input :content, as: :string, required: true, input_html: { hidden: true, value: @post.content } %>
+  <%= f.input :content, as: :string, required: true, input_html: { hidden: true, value: @post.content } %>
+  <div class="form-group d-flex flex-column">
     <div class="editor-container">
       <div id="post-content-editor">
       </div>
     </div>
   </div>
   <% if @post.persisted? %>
-    <!--    edit-->
+    <!-- edit -->
     <% if @post.published %>
       <%= f.button :button, "Save", type: "submit", name: "post[published]", value: "true", class: "btn btn-primary" %>
     <% else %>
       <%= f.button :button, "Post!", type: "submit", name: "post[published]", value: "true", class: "btn btn-success" %>
+      <%= f.button :button, "Save Draft", type: "submit", name: "post[published]", value: "false", class: "btn btn-primary" %>
     <% end %>
   <% else %>
-    <!--        create-->
+    <!-- create -->
     <%= f.button :button, "Post!", type: "submit", name: "post[published]", value: "true", class: "btn btn-success" %>
     <%= f.button :button, "Save Draft", type: "submit", name: "post[published]", value: "false", class: "btn btn-primary" %>
   <% end %>
+
 <% end %>

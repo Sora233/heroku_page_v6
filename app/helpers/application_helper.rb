@@ -19,4 +19,15 @@ module ApplicationHelper
     end
   end
 
+  def current_request?(*requests)
+    requests.each do |request|
+      if request[:controller].to_s == controller.controller_name.to_s
+        return true if request[:action].nil?
+        return true if request[:action].is_a?(Array) && request[:action].map(&:to_s).include?(controller.action_name.to_s)
+        return true if request[:action].to_s == controller.action_name.to_s || request[:action].to_s == '*'
+      end
+    end
+    false
+  end
+
 end
