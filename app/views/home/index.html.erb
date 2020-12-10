@@ -1,11 +1,12 @@
 <%= render 'shared/alert' %>
-<%= render 'shared/page_title', page_title: "Menu" %>
-<br/>
-<% if current_user.nil? %>
-<% else %>
-  <% if can? :admin_index, User %>
-    <%= link_to 'User List', admins_users_path %><br/>
-  <% end %>
-  <%= link_to 'Profile', user_path(current_user) %><br/>
-  <%= link_to 'Log Out', destroy_user_session_path, method: :delete %><br/>
-<% end %>
+<div class="d-flex flex-row justify-content-center">
+  <div class="card bg-secondary text-white">
+    <h3 class="card-title text-center">
+      <div class="d-flex flex-wrap justify-content-center mt-2">
+        <a><span class="badge hours"></span></a> :
+        <a><span class="badge minutes"></span></a> :
+        <a><span class="badge seconds"></span></a>
+      </div>
+    </h3>
+  </div>
+</div>

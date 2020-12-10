@@ -19,5 +19,7 @@ Rails.application.routes.draw do
     resources :users
   end
 
+  get '/about', to: "home#about"
+
   root to: 'home#index'
 end

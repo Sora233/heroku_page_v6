@@ -1,0 +1,33 @@
+<%= render 'shared/alert' %>
+<%= render 'shared/page_title', page_title: "About" %>
+<div class="container my-4 d-flex flex-column about-container">
+  <p class="h1 text-center">Sora heroku</p>
+  <p class="h4">This is a Simple Blog on Heroku.</p>
+  <p class="h4">You can use it as a scaffolding.</p>
+  <p></p>
+  <span>
+    Version: 0.0.1
+  </span>
+  <span>
+    Build with:
+  </span>
+  <span>
+    <ul>
+      <li>
+        Rails 6.0.3.4
+      </li>
+      <li>
+        Webpack
+      </li>
+      <li>
+        Coffee
+      </li>
+      <li>
+        Also Active storage & Action text
+      </li>
+    </ul>
+  </span>
+  <p class="font-weight-bolder">
+    <%= link_to 'Report Bug!', 'mailto:sora@sora233.me' %>
+  </p>
+</div>
