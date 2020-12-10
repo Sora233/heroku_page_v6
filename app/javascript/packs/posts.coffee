@@ -42,7 +42,6 @@ do_editor = (id) ->
         history: {
           delay: 2000,
           maxStack: 500,
-          userOnly: true
         }
       },
       placeholder: 'Begin to change the world..',
