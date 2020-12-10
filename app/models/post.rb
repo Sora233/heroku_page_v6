@@ -8,7 +8,6 @@ class Post < ApplicationRecord
   scope :draft, -> { where(public: true, published: false) }
 
   validates :title, presence: true
-  validates :user_id, presence: true
 
   # validate content
   validate do

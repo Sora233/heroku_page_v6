@@ -12,10 +12,13 @@ class User < ApplicationRecord
 
   include UsersHelper
 
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  has_and_belongs_to_many :block_users, -> { distinct },
+                          class_name: "User",
+                          join_table: "users_blockship",
+                          association_foreign_key: "block_user_id"
 
-  has_many :posts
+
+  has_many :posts, :dependent => :nullify
 
   devise :database_authenticatable, :registerable,
          :recoverable, :confirmable, :rememberable,
@@ -70,6 +73,18 @@ class User < ApplicationRecord
 
   def perform_lock?
     enabled?
+  end
+
+  def add_block_user(user)
+    unless block_users.include?(user)
+      block_users << user
+      true
+    end
+    false
+  end
+
+  def blocked_by
+    User.joins(:block_users).where("block_user_id = ?", id).distinct
   end
 
 end
