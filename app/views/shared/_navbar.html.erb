@@ -1,35 +1,39 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Navbar</a>
+  <a class="navbar-brand" href="#">Sora</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse">
     <ul class="navbar-nav">
-      <li class="nav-item <%= current_request?(controller: :home) ? "active" : "" %>">
+      <li class="nav-item <%= current_request?(controller: :home, except: :about) ? "active" : "" %>">
         <a class="nav-link" href="<%= root_path %>">Home</a>
       </li>
-      <li class="nav-item <%= current_request?(controller: :posts) ? "active" : "" %>">
-        <a class="nav-link" href="<%= posts_path %>">Post</a>
+      <% if can? :index, Post %>
+        <li class="nav-item <%= current_request?(controller: :posts) ? "active" : "" %>">
+          <a class="nav-link" href="<%= posts_path %>">Post</a>
+        </li>
+      <% end %>
+      <li class="nav-item <%= current_request?(controller: :home, action: :about) ? "active" : "" %>">
+        <a class="nav-link" href="<%= about_path %>">About</a>
       </li>
-
     </ul>
   </div>
-  <div>
+  <span>
     <% if current_user.nil? %>
       <div class="nav-link">
         <%= link_to 'Log in', new_user_session_path unless current_request?(controller: :sessions, action: :new) %>
       </div>
     <% else %>
       <div class="nav-link dropdown">
-        <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <%= current_user.username %>
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <%= link_to 'Profile', user_path(current_user), class: "dropdown-item" %>
-          <%= link_to 'User List', admins_users_path, class: "dropdown-item" %>
+          <%= link_to 'Profile', user_path(current_user), class: "dropdown-item" if can? :index, current_user %>
+          <%= link_to 'User List', admins_users_path, class: "dropdown-item" if can? :admin_index, User %>
           <%= link_to 'Log Out', destroy_user_session_path, class: "dropdown-item" %>
         </div>
       </div>
     <% end %>
-  </div>
+  </span>
 </nav>
