@@ -7,7 +7,7 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post.do_visit
+    @post.do_visit unless @post.user_id == current_user.id
   end
 
   def new; end
