@@ -22,6 +22,10 @@ class Post < ApplicationRecord
     super(ActiveModel::Type::Boolean.new.cast(value))
   end
 
+  def do_visit
+    Post.increment_counter(:visit_count, self.id)
+  end
+
   def username
     self&.user&.username || "Canceled User"
   end

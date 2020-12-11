@@ -6,7 +6,9 @@ class PostsController < ApplicationController
     @posts = do_paginate(@posts).opened
   end
 
-  def show; end
+  def show
+    @post.do_visit
+  end
 
   def new; end
 
