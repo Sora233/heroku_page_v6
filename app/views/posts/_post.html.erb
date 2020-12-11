@@ -1,0 +1,7 @@
+<% cache post do %>
+  <li>
+    <%= link_to "#{post.title}", post_path(post) %>
+    By: <%= post.username %>
+  </li>
+  <br/>
+<% end %>

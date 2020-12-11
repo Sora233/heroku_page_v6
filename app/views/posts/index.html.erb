@@ -3,16 +3,8 @@
   <p class="h5">No Posts Yet</p>
   <%= link_to "See Your Draft", profile_posts_path, class: "btn btn-primary" %>
 <% else %>
-  <ul>
-    <% @posts.each do |post| %>
-      <% cache post do %>
-        <li>
-          <%= link_to "#{post.title}", post_path(post) %>
-          By: <%= post.username %>
-        </li>
-        <br/>
-      <% end %>
-    <% end %>
+  <ul id="posts" data-channel="posts">
+    <%= render @posts %>
   </ul>
   <%= paginate @posts %>
 <% end %>

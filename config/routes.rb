@@ -22,7 +22,7 @@ Rails.application.routes.draw do
   get '/about', to: "home#about"
 
   namespace :profile do
-    resources :posts, only: [:show, :index]
+    resources :posts, only: :index
     resources :users, only: [] do
       member do
         patch 'block'
