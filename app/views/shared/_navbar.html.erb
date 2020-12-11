@@ -33,7 +33,7 @@
           <%= link_to 'My Posts', profile_posts_path, class: "dropdown-item" %>
           <%= link_to 'My Blocklist', block_list_profile_users_path, class: "dropdown-item" %>
           <%= link_to 'User List', admins_users_path, class: "dropdown-item" if can? :admin_index, User %>
-          <%= link_to 'Log Out', destroy_user_session_path, class: "dropdown-item" %>
+          <%= link_to 'Log Out', destroy_user_session_path, class: "dropdown-item", method: :delete %>
         </div>
       </div>
     <% end %>
