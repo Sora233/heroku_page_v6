@@ -6,6 +6,16 @@ class Admins::UsersController < ApplicationController
     @users = do_paginate(@users).order(:created_at)
   end
 
+  def disable
+    @user.disabled!
+    redirect_back fallback_location: @user
+  end
+
+  def enable
+    @user.enabled!
+    redirect_back fallback_location: @user
+  end
+
   private
 
   def authenticate_admin!

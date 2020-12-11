@@ -4,8 +4,8 @@ class Post < ApplicationRecord
 
   include ActiveModel::Validations
 
-  scope :opened, -> { where(public: true, published: true) }
-  scope :draft, -> { where(public: true, published: false) }
+  scope :opened, -> { where(published: true) }
+  scope :draft, -> { where(published: false) }
 
   validates :title, presence: true
 
@@ -20,6 +20,10 @@ class Post < ApplicationRecord
 
   def published=(value)
     super(ActiveModel::Type::Boolean.new.cast(value))
+  end
+
+  def username
+    self&.user&.username || "Canceled User"
   end
 
 end

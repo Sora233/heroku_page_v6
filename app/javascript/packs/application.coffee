@@ -24,6 +24,8 @@ import "./home"
 import "./admin/users"
 import "./posts"
 import "./users"
+import "./profile/posts"
+import "./profile/users"
 
 
 $(document).on 'turbolinks:load', ->

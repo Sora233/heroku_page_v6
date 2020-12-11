@@ -1,14 +1,17 @@
-<%= render 'shared/page_title', page_title: "Post List" %>
+<%= render 'shared/page_title', page_title: "My Posts" %>
 <% if @posts.empty? %>
-  <p class="h5">No Posts Yet</p>
-  <%= link_to "See Your Draft", profile_posts_path, class: "btn btn-primary" %>
+  You don't have Any Post
 <% else %>
   <ul>
     <% @posts.each do |post| %>
       <% cache post do %>
         <li>
           <%= link_to "#{post.title}", post_path(post) %>
-          By: <%= post.username %>
+          <% if post.published %>
+            <span class="badge badge-success">published</span>
+          <% else %>
+            <span class="badge badge-secondary">draft</span>
+          <% end %>
         </li>
         <br/>
       <% end %>

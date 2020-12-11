@@ -3,8 +3,7 @@ class PostsController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @posts = do_paginate(@posts)
-    @posts = @posts.draft unless params[:draft_only].nil?
+    @posts = do_paginate(@posts).opened
   end
 
   def show; end

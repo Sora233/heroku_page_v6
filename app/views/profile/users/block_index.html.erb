@@ -1,0 +1,33 @@
+<%= render 'shared/page_title', page_title: "Block List" %>
+<table class="table">
+  <thead>
+  <th scope="col">#</th>
+  <th scope="col">
+    Username
+  </th>
+  <th scope="col">
+    Email
+  </th>
+  <th scope="col">
+    Role
+  </th>
+  <th scope="col">
+    Operator
+  </th>
+  </thead>
+  <tbody>
+  <% @users.each do |user| %>
+    <tr>
+      <th scope="row"><%= user.id %></th>
+      <td><%= user.username %></td>
+      <td><%= user.email %></td>
+      <td><%= user.role %></td>
+      <td>
+        <div class="p-1 d-inline-flex flex-row">
+          <%= link_to 'Cancel', unblock_profile_user_path(user), class: "badge badge-pill badge-secondary", method: :patch %>
+        </div>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

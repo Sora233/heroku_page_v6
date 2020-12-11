@@ -17,7 +17,6 @@ class User < ApplicationRecord
                           join_table: "users_blockship",
                           association_foreign_key: "block_user_id"
 
-
   has_many :posts, :dependent => :nullify
 
   devise :database_authenticatable, :registerable,
@@ -76,11 +75,17 @@ class User < ApplicationRecord
   end
 
   def add_block_user(user)
-    unless block_users.include?(user)
-      block_users << user
+    unless block_users.include?(user) || user == self
+      block_users.append user
       true
     end
     false
+  end
+
+  def cancel_block_user(user)
+    if block_users.include?(user) && user != self
+      block_users.delete user
+    end
   end
 
   def blocked_by

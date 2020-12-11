@@ -8,18 +8,30 @@
       </div>
     </div>
   </div>
-  <% if @post.persisted? %>
-    <!-- edit -->
-    <% if @post.published %>
-      <%= f.button :button, "Save", type: "submit", name: "post[published]", value: "true", class: "btn btn-primary" %>
+  <div class="d-flex flex-row justify-content-end">
+    <% if @post.persisted? %>
+      <!-- edit -->
+      <% if @post.published %>
+        <div class="p-2">
+          <%= f.button :button, "Save", type: "submit", name: "post[published]", value: "true", class: "btn btn-primary" %>
+        </div>
+      <% else %>
+        <div class="p-2">
+          <%= f.button :button, "Post!", type: "submit", name: "post[published]", value: "true", class: "btn btn-success" %>
+        </div>
+        <div class="p-2">
+          <%= f.button :button, "Save Draft", type: "submit", name: "post[published]", value: "false", class: "btn btn-secondary" %>
+        </div>
+      <% end %>
     <% else %>
-      <%= f.button :button, "Post!", type: "submit", name: "post[published]", value: "true", class: "btn btn-success" %>
-      <%= f.button :button, "Save Draft", type: "submit", name: "post[published]", value: "false", class: "btn btn-primary" %>
+      <!-- create -->
+      <div class="p-2">
+        <%= f.button :button, "Post!", type: "submit", name: "post[published]", value: "true", class: "btn btn-success" %>
+      </div>
+      <div class="p-2">
+        <%= f.button :button, "Save Draft", type: "submit", name: "post[published]", value: "false", class: "btn btn-secondary" %>
+      </div>
     <% end %>
-  <% else %>
-    <!-- create -->
-    <%= f.button :button, "Post!", type: "submit", name: "post[published]", value: "true", class: "btn btn-success" %>
-    <%= f.button :button, "Save Draft", type: "submit", name: "post[published]", value: "false", class: "btn btn-primary" %>
-  <% end %>
+  </div>
 
 <% end %>

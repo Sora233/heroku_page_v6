@@ -14,13 +14,4 @@ class UsersController < ApplicationController
   def destroy
   end
 
-  def disable
-    @user.disabled!
-    redirect_back fallback_location: @user
-  end
-
-  def enable
-    @user.enabled!
-    redirect_back fallback_location: @user
-  end
 end

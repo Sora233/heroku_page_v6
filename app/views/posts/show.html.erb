@@ -1,6 +1,6 @@
 <%= render 'shared/page_title', page_title: @post.title %>
 <div class="form-group">
-  <h5>By: <%= link_to @post.user.username, user_path(@post.user) %></h5>
+  <h5>By: <%= link_to_if @post.user, @post.username, (user_path(@post.user) rescue '#')%></h5>
 </div>
 <div class="form-group">
   <input id="post_content" type="hidden" value="<%= @post.content %>">

@@ -42,6 +42,7 @@ class Ability
     alias_action :index, :show, to: :read
     alias_action :index, :show, :create, :new, :read, :update, :destroy, :to => :crud
     alias_action :update, :destroy, :disable, :enable, :to => :modify
+    alias_action :block, :unblock, :to => :modify_blockship
   end
 
   def admin_ability(user)
@@ -51,6 +52,7 @@ class Ability
   def user_ability(user)
     can :crud, Post, user_id: user.id
     can [:crud, :modify], User, id: user.id
+    can :modify_blockship, User
   end
 
   def general_ability(user)
@@ -61,5 +63,6 @@ class Ability
     cannot :enable, User, disabled: false
     cannot :disable, User, id: user.id unless user.nil?
     cannot :enable, User, id: user.id unless user.nil?
+    cannot :modify_blockship, User, id: user.id unless user.nil?
   end
 end

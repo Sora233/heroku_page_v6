@@ -8,18 +8,32 @@ Rails.application.routes.draw do
     confirmations: 'users/confirmations',
   }
   resources :posts
-  resources :users, except: :index do
-    member do
-      patch 'enable'
-      patch 'disable'
+  resources :users, except: :index
+
+  namespace :admins do
+    resources :users, only: [:index] do
+      member do
+        patch 'enable'
+        patch 'disable'
+      end
     end
   end
 
-  namespace :admins do
-    resources :users
-  end
-
   get '/about', to: "home#about"
+
+  namespace :profile do
+    resources :posts, only: [:show, :index]
+    resources :users, only: [] do
+      member do
+        patch 'block'
+        patch 'unblock'
+      end
+      collection do
+        get 'block_list', action: :block_index
+      end
+    end
+
+  end
 
   root to: 'home#index'
 end
