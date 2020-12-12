@@ -29,4 +29,12 @@ import "./profile/users"
 
 
 $(document).on 'turbolinks:load', ->
+  $(".toggle_button").click ->
+    target_id = $(this).data("toggle-target")
+    if target_id
+      $(target_id).slideToggle()
+      $(this).toggle()
+    else
+      console.error("no toggle target")
+
 

@@ -1,4 +1,4 @@
-<h2>User List</h2>
+<%= render "shared/page_title", page_title: "User List" %>
 <ul>
   <% @users.each do |user| %>
     <% cache user do %>

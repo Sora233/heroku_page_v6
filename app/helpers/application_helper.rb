@@ -4,6 +4,14 @@ module ApplicationHelper
       &.per(params[Kaminari.config.default_per_page]&.to_i)
   end
 
+  def flash_resource(resource)
+    flash.alert = resource.errors.full_messages.to_sentence
+  end
+
+  def flash_resource_now(resource)
+    flash.now.alert = resource.errors.full_messages.to_sentence
+  end
+
   def flash_class(level)
     case level
     when 'notice' then

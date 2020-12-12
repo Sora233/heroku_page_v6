@@ -1,5 +1,4 @@
 <%= render 'shared/page_title', page_title: "Forgot your password?" %>
-<%= render "shared/alert", resource: resource %>
 <%= simple_form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => {:class => 'form-horizontal' }) do |f| %>
   <%= f.input :username %>
 

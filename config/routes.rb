@@ -7,7 +7,9 @@ Rails.application.routes.draw do
     unlocks: 'users/unlocks',
     confirmations: 'users/confirmations',
   }
-  resources :posts
+  resources :posts do
+    resources :comments, only: [:create, :destroy]
+  end
   resources :users, except: :index
 
   namespace :admins do

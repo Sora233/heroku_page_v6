@@ -53,10 +53,12 @@ class Ability
     can :crud, Post, user_id: user.id
     can [:crud, :modify], User, id: user.id
     can :modify_blockship, User
+    can :create, Comment
+    can :destroy, Comment, user_id: user.id
   end
 
   def general_ability(user)
-    can :read, Post, public: true, published: true
+    can :read, Post, published: true
     can :read, User, disabled: false
 
     cannot :disable, User, disabled: true

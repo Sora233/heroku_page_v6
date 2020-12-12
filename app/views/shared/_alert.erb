@@ -1,5 +1,5 @@
 <% if defined?(resource) && resource&.errors&.full_messages&.any? %>
-  <% flash.alert = resource.errors.full_messages.to_sentence %>
+  <% flash_resource(resource) %>
 <% end %>
 <% flash.each do |key, value| %>
   <% if value.class == Array %>

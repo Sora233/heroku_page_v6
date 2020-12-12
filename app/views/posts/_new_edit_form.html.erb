@@ -1,34 +1,30 @@
-<%= simple_form_for @post, :html => { :class => 'form-horizontal' } do |f| %>
+<%= simple_form_for @post, :html => { :class => 'form-horizontal post-form' } do |f| %>
   <%= f.input :title %>
-
-  <%= f.input :content, as: :string, required: true, input_html: { hidden: true, value: @post.content } %>
+  <%= f.label :content, required: true %>
   <div class="form-group d-flex flex-column">
-    <div class="editor-container">
-      <div id="post-content-editor">
-      </div>
-    </div>
+    <%= f.rich_text_area :content %>
   </div>
-  <div class="d-flex flex-row justify-content-end">
+  <div class="op_button_group">
     <% if @post.persisted? %>
       <!-- edit -->
       <% if @post.published %>
-        <div class="p-2">
+        <div>
           <%= f.button :button, "Save", type: "submit", name: "post[published]", value: "true", class: "btn btn-primary" %>
         </div>
       <% else %>
-        <div class="p-2">
+        <div>
           <%= f.button :button, "Post!", type: "submit", name: "post[published]", value: "true", class: "btn btn-success" %>
         </div>
-        <div class="p-2">
+        <div>
           <%= f.button :button, "Save Draft", type: "submit", name: "post[published]", value: "false", class: "btn btn-secondary" %>
         </div>
       <% end %>
     <% else %>
       <!-- create -->
-      <div class="p-2">
+      <div>
         <%= f.button :button, "Post!", type: "submit", name: "post[published]", value: "true", class: "btn btn-success" %>
       </div>
-      <div class="p-2">
+      <div>
         <%= f.button :button, "Save Draft", type: "submit", name: "post[published]", value: "false", class: "btn btn-secondary" %>
       </div>
     <% end %>

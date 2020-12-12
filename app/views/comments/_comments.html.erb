@@ -1,0 +1,14 @@
+<h5 class="text-left">Comments</h5>
+<div data-channel="comments" data-post-id="<%= @post.id %>" >
+  <% if @post.comments.blank? %>
+    <%= render "comments/empty_comment" %>
+  <% else %>
+    <%= render @post.comments.includes(:user) %>
+  <% end %>
+</div>
+<div id="new_comment" style="display: none">
+  <%= render "comments/new_comment" %>
+</div>
+<div class="op_button_group">
+  <button type="button" class="btn btn-primary toggle_button" data-toggle-target="#new_comment">Let Me Comment!</button>
+</div>

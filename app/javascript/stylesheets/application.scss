@@ -16,6 +16,7 @@
 @import "users";
 @import "home";
 @import "posts";
+@import "comments";
 @import "profile/posts";
 @import "profile/users";
 @import "actiontext.scss";
@@ -29,4 +30,16 @@
 
 .navbar-container {
   @extend .mb-2;
+}
+
+.op_button_group {
+  @extend .d-flex;
+  @extend .flex-row;
+  @extend .justify-content-end;
+}
+
+.op_button_group {
+  div {
+    @extend .pl-4
+  }
 }

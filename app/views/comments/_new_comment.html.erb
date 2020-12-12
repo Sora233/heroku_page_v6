@@ -1,0 +1,12 @@
+<div class="media position-relative mb-4">
+  <div class="media-body">
+    <%= simple_form_for [@post, Comment.new], :html => { :class => 'form-horizontal comment-form' } do |f| %>
+      <%= f.rich_text_area :content, class: "mb-2" %>
+      <div class="op_button_group">
+        <div>
+          <%= f.submit "Comment!", class: "btn btn-primary" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

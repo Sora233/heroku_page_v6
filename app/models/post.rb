@@ -2,21 +2,19 @@ class Post < ApplicationRecord
   include PostsHelper
   belongs_to :user
 
+  has_rich_text :content
+
   include ActiveModel::Validations
 
   scope :opened, -> { where(published: true) }
   scope :draft, -> { where(published: false) }
 
-  validates :title, presence: true
+  scope :natual_order, -> { order(updated_at: :desc, created_at: :desc) }
 
-  # validate content
-  validate do
-    if content.blank?
-      errors.add(:content, :blank)
-    elsif !valid_json?(content)
-      errors.add(:content, "Invalid Format, Please Report a Bug")
-    end
-  end
+  has_many :comments, as: :commentable, dependent: :destroy
+
+  validates :title, presence: true
+  validates :content, presence: true
 
   def published=(value)
     super(ActiveModel::Type::Boolean.new.cast(value))
@@ -27,7 +25,7 @@ class Post < ApplicationRecord
   end
 
   def username
-    self&.user&.username || "Canceled User"
+    self&.user&.username || "User Canceled"
   end
 
 end

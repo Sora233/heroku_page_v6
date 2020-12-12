@@ -3,7 +3,7 @@ class PostsController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @posts = do_paginate(@posts).opened
+    @posts = do_paginate(@posts).opened.natual_order
   end
 
   def show
@@ -16,6 +16,7 @@ class PostsController < ApplicationController
     if @post.save
       redirect_to @post
     else
+      flash_resource_now @post
       render :new
     end
   end
@@ -25,8 +26,10 @@ class PostsController < ApplicationController
   def update
     @post.attributes = post_params
     if @post.save
+      flash[:notice] = "Success."
       redirect_to @post
     else
+      flash_resource_now @post
       render :edit
     end
   end
@@ -36,6 +39,6 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title, :content, :published, :public)
+    params.require(:post).permit(:title, :content, :published)
   end
 end

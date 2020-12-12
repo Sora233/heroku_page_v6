@@ -18,6 +18,7 @@ class User < ApplicationRecord
                           association_foreign_key: "block_user_id"
 
   has_many :posts, :dependent => :nullify
+  has_many :comments
 
   devise :database_authenticatable, :registerable,
          :recoverable, :confirmable, :rememberable,
