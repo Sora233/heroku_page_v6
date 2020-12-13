@@ -11,7 +11,7 @@
 </div>
 <div class="op_button_group">
   <% if current_user.nil? %>
-    <%= link_to 'Log in To Comment', new_user_session_path %>
+    <%= link_to 'Log in To Comment', new_user_session_path, class: "btn btn-primary" %>
   <% end %>
 
   <% if can? :create, @post => Comment %>
