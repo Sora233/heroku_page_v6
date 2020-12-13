@@ -1,6 +1,13 @@
-<div class="media position-relative mb-4 bg-light comment-show">
-  <div class="p-4"><%= comment.username %></div>
+<div class="media position-relative mb-4 bg-light comment-show p-4">
+  <div class="mr-4"><%= comment.username %></div>
   <div class="media-body">
-    <%= comment.content %>
+    <div class="d-flex flex-row">
+      <div class="flex-grow-1">
+        <%= comment.content %>
+      </div>
+      <div class="op_button_group">
+        <%= link_to 'Delete', commentable_comment_path(comment.commentable, comment), method: :delete, class: "btn-sm btn-danger" if can? :destroy, comment %>
+      </div>
+    </div>
   </div>
 </div>

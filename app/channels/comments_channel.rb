@@ -4,19 +4,14 @@ class CommentsChannel < ApplicationCable::Channel
     stream_for post
   end
 
-  def receive(data)
-    byebug
+  def unsubscribe_all_post
+    stop_all_streams
   end
 
   def test(data)
     post = Post.find(data["post_id"])
-    c = post.comments.new
-    c.user = post.user
-    c.content = "{}"
-    CommentsChannel.broadcast_to post, { comment: CommentsController.render(partial: "comments/comment", locals: { comment: c }), comment_id: 1 }
-  end
-
-  def unsubscribed
-    # Any cleanup needed when channel is unsubscribed
+    comment = Comment.first
+    renderer = ApplicationController.renderer_with_signed_in_user(current)
+    CommentsChannel.broadcast_to post, comment: renderer.render(partial: "comments/comment", locals: { comment: comment })
   end
 end

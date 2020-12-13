@@ -42,6 +42,7 @@ class Ability
     alias_action :index, :show, to: :read
     alias_action :index, :show, :create, :new, :read, :update, :destroy, :to => :crud
     alias_action :update, :destroy, :disable, :enable, :to => :modify
+    alias_action :block_index, :to => :read_blockship
     alias_action :block, :unblock, :to => :modify_blockship
   end
 
@@ -52,14 +53,15 @@ class Ability
   def user_ability(user)
     can :crud, Post, user_id: user.id
     can [:crud, :modify], User, id: user.id
-    can :modify_blockship, User
-    can :create, Comment
+    can [:read_blockship, :modify_blockship], User
+    can :create, Comment, commentable_type: "Post", commentable: { published: true }
     can :destroy, Comment, user_id: user.id
   end
 
   def general_ability(user)
     can :read, Post, published: true
     can :read, User, disabled: false
+    can :read, Comment
 
     cannot :disable, User, disabled: true
     cannot :enable, User, disabled: false

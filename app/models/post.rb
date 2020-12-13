@@ -25,7 +25,7 @@ class Post < ApplicationRecord
   end
 
   def username
-    self&.user&.username || "User Canceled"
+    self&.user&.username || t("user.canceled_name")
   end
 
 end

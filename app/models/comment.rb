@@ -2,6 +2,13 @@ class Comment < ApplicationRecord
   belongs_to :user
   belongs_to :commentable, polymorphic: true
 
+  has_one :self_ref, :class_name => "Comment", :foreign_key => :id
+  has_one :post, :through => :self_ref, :source => :commentable, :source_type => "Post"
+
+  after_commit do
+    CommentDeliverJob.perform_later self, self.user
+  end
+
   has_rich_text :content
 
   include ActiveModel::Validations
@@ -9,7 +16,7 @@ class Comment < ApplicationRecord
   validates :content, presence: true
 
   def username
-    self&.user&.username || "User Canceled"
+    self&.user&.username || t("user.canceled_name")
   end
 
 end
