@@ -1,3 +1,4 @@
+<%= render 'shared/page_title', page_title: @post.title %>
 <div class="form-group d-flex flex-row justify-content-between">
   <div class="flex-grow-1">
     <h5>By: <%= link_to_if @post.user, @post.username, (user_path(@post.user) rescue '#') %></h5>
