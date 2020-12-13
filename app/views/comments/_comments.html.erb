@@ -3,7 +3,7 @@
   <% if @post.comments.blank? %>
     <%= render "comments/empty_comment" %>
   <% else %>
-    <%= render @post.comments.includes(:user) %>
+    <%= render partial: 'comments/comment', collection: @post.comments.includes(:user), cache: true %>
   <% end %>
 </div>
 <div id="new_comment" style="display: none">

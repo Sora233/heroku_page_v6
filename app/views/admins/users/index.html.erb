@@ -1,12 +1,4 @@
 <%= render "shared/page_title", page_title: "User List" %>
 <ul>
-  <% @users.each do |user| %>
-    <% cache user do %>
-      <li>
-        <%= link_to user.username, user_path(user) %>
-        <%= link_to 'Disable', disable_admins_user_path(user), method: :patch if can? :disable, user %>
-        <%= link_to 'Enable', enable_admins_user_path(user), method: :patch if can? :enable, user %>
-      </li>
-    <% end %>
-  <% end %>
+  <%= render partial: 'admins/users/user', collection: @posts, cache: true %>
 </ul>

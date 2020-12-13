@@ -1,14 +1,12 @@
-<% cache post do %>
-  <li>
-    <div class="d-flex flex-row">
-      <div class="flex-grow-1">
-        <%= link_to "#{post.title}", post_path(post), class: "mr-2" %>
-        <span class="mr-2">
+<li>
+  <div class="d-flex flex-row">
+    <div class="flex-grow-1">
+      <%= link_to "#{post.title}", post_path(post), class: "mr-2" %>
+      <span class="mr-2">
           By: <%= post.username %>
         </span>
-        <i class="fas fa-eye mr-2"><%= post.visit_count %></i>
-      </div>
+      <i class="fas fa-eye mr-2"><%= post.visit_count %></i>
     </div>
-  </li>
-  <br/>
-<% end %>
+  </div>
+</li>
+<br/>

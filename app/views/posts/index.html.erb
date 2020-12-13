@@ -3,8 +3,8 @@
   <p class="h5">No Posts Yet</p>
   <%= link_to "See Your Draft", profile_posts_path, class: "btn btn-primary" %>
 <% else %>
-  <ul id="posts" data-channel="posts">
-    <%= render @posts %>
+  <ul data-channel="posts">
+    <%= render partial: "posts/post", collection: @posts %>
   </ul>
   <%= paginate @posts %>
 <% end %>

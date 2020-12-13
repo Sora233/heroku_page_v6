@@ -12,21 +12,13 @@ Rails.application.configure do
   # Show full error reports.
   config.consider_all_requests_local = true
 
-  # Enable/disable caching. By default caching is disabled.
-  # Run rails dev:cache to toggle caching.
-  if Rails.root.join('tmp', 'caching-dev.txt').exist?
-    config.action_controller.perform_caching = true
-    config.action_controller.enable_fragment_cache_logging = true
-
-    config.cache_store = :memory_store
-    config.public_file_server.headers = {
-      'Cache-Control' => "public, max-age=#{2.days.to_i}"
-    }
-  else
-    config.action_controller.perform_caching = false
-
-    config.cache_store = :null_store
-  end
+  # Enable caching.
+  config.action_controller.perform_caching = true
+  config.cache_store = :redis_cache_store, {
+    url: 'redis://localhost:6379',
+    connect_timeout: 30, # Defaults to 20 seconds
+    reconnect_attempts: 1, # Defaults to 0
+  }
 
   # Store uploaded files on the local file system (see config/storage.yml for options).
   config.active_storage.service = :local
@@ -63,7 +55,7 @@ Rails.application.configure do
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
-  config.active_job.queue_adapter     = :async
+  config.active_job.queue_adapter = :async
   config.active_job.queue_name_prefix = "heroku_page_#{Rails.env}"
   config.active_job.queue_adapter = ActiveJob::QueueAdapters::AsyncAdapter.new min_threads: 1, max_threads: 2 * Concurrent.processor_count, idletime: 600.seconds
 end
