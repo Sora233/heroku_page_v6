@@ -1,9 +1,9 @@
 <h5 class="text-left">Comments</h5>
 <div data-channel="comments" data-post-id="<%= @post.id %>">
-  <% if @post.comments.blank? %>
+  <% if @comments.blank? %>
     <%= render "comments/empty_comment" %>
   <% else %>
-    <%= render partial: 'comments/comment', collection: @post.comments.includes(:user), cache: true %>
+    <%= render partial: 'comments/comment', collection: @comments, cache: true %>
   <% end %>
 </div>
 <div id="new_comment" style="display: none">

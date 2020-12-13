@@ -3,19 +3,7 @@
   You don't have Any Post
 <% else %>
   <ul>
-    <% @posts.each do |post| %>
-      <% cache post do %>
-        <li>
-          <%= link_to "#{post.title}", post_path(post) %>
-          <% if post.published %>
-            <span class="badge badge-success">published</span>
-          <% else %>
-            <span class="badge badge-secondary">draft</span>
-          <% end %>
-        </li>
-        <br/>
-      <% end %>
-    <% end %>
+    <%= render partial: "profile/posts/post", collection: @posts %>
   </ul>
   <%= paginate @posts %>
 <% end %>

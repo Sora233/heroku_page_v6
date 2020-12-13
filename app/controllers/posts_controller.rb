@@ -3,11 +3,12 @@ class PostsController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @posts = do_paginate(@posts).opened.natual_order
+    @posts = do_paginate(@posts).opened.natural_order
   end
 
   def show
     @post.do_visit unless !current_user.nil? && @post.user_id == current_user&.id
+    @comments = @post.comments.includes(:user).natural_order
   end
 
   def new; end

@@ -5,7 +5,9 @@ class Comment < ApplicationRecord
   has_one :self_ref, :class_name => "Comment", :foreign_key => :id
   has_one :post, :through => :self_ref, :source => :commentable, :source_type => "Post"
 
-  after_commit do
+  scope :natural_order, -> { order(created_at: :desc) }
+
+  after_create_commit do
     CommentDeliverJob.perform_later self, self.user
   end
 

@@ -40,4 +40,5 @@ $(document).on 'turbolinks:load', ->
     else
       console.error("no toggle target")
 
+  $('[data-toggle="tooltip"]').tooltip()
 

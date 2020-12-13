@@ -2,17 +2,15 @@ class Post < ApplicationRecord
   include PostsHelper
   belongs_to :user
 
-  has_rich_text :content
+  has_many :comments, as: :commentable, dependent: :destroy
 
-  include ActiveModel::Validations
+  has_rich_text :content
 
   scope :opened, -> { where(published: true) }
   scope :draft, -> { where(published: false) }
+  scope :natural_order, -> { order(updated_at: :desc, created_at: :desc) }
 
-  scope :natual_order, -> { order(updated_at: :desc, created_at: :desc) }
-
-  has_many :comments, as: :commentable, dependent: :destroy
-
+  include ActiveModel::Validations
   validates :title, presence: true
   validates :content, presence: true
 
