@@ -27,7 +27,7 @@ class PostsController < ApplicationController
   def update
     @post.attributes = post_params
     if @post.save
-      flash[:notice] = "Success."
+      flash[:notice] = t("post.update.success")
       redirect_to @post
     else
       flash_resource_now @post
@@ -37,6 +37,7 @@ class PostsController < ApplicationController
 
   def destroy
     if @post.destroy
+      flash[:notice] = t("post.delete.success")
       redirect_to action: :index
     else
       flash_resource @post

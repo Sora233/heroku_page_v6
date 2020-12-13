@@ -5,7 +5,7 @@
   <td><%= user.role %></td>
   <td>
     <div class="p-1 d-inline-flex flex-row">
-      <%= link_to 'Cancel', unblock_profile_user_path(user), class: "badge badge-pill badge-secondary", method: :patch %>
+      <%= link_to 'Cancel', unblock_profile_user_path(user), data: { confirm: t("user.unblock.confirm") }, class: "badge badge-pill badge-secondary", method: :patch %>
     </div>
   </td>
 </tr>

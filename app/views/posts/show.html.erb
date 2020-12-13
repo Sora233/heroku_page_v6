@@ -9,7 +9,7 @@
         <%= link_to "Edit", edit_post_path(@post), class: "btn btn-primary" if can? :modify, @post %>
       </div>
       <div>
-        <%= link_to "Delete", post_path(@post), method: :delete, data: { confirm: t("post.delete_confirm") }, class: "btn btn-danger" if can? :destroy, @post %>
+        <%= link_to "Delete", post_path(@post), method: :delete, data: { confirm: t("post.delete.confirm") }, class: "btn btn-danger" if can? :destroy, @post %>
       </div>
     </div>
   </div>

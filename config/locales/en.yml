@@ -31,8 +31,19 @@
 
 en:
   user:
+    disable:
+      confirm: "Are you sure?"
+    enable:
+      confirm: "Are you sure?"
+    unblock:
+      confirm: "This action can not be undone, Are you sure?"
     canceled_name: "User Canceled"
   post:
-    delete_confirm: "This action can not be undo, Are you sure?"
+    update:
+      success: "Success"
+    delete:
+      success: "Success"
+      confirm: "This action can not be undone, Are you sure?"
   comment:
-    delete_confirm: "This action can not be undo, Are you sure?"
+    delete:
+      confirm: "This action can not be undone, Are you sure?"

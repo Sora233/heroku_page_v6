@@ -10,7 +10,7 @@
           <%= link_to 'Delete', commentable_comment_path(comment.commentable, comment),
                       method: :delete,
                       class: "btn-sm btn-danger",
-                      data: { confirm: t("comment.delete_confirm") } if can? :destroy, comment %>
+                      data: { confirm: t("comment.delete.confirm") } if can? :destroy, comment %>
         </div>
       <% end %>
     </div>
