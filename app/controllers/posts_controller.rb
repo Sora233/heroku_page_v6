@@ -13,7 +13,6 @@ class PostsController < ApplicationController
   def new; end
 
   def create
-    byebug
     if @post.save
       redirect_to @post
     else
