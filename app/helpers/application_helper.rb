@@ -5,11 +5,11 @@ module ApplicationHelper
   end
 
   def flash_resource(resource)
-    flash.alert = resource.errors.full_messages.to_sentence
+    flash.alert = resource.errors.full_messages.to_sentence if resource.errors.full_messages.any?
   end
 
   def flash_resource_now(resource)
-    flash.now.alert = resource.errors.full_messages.to_sentence
+    flash.now.alert = resource.errors.full_messages.to_sentence if resource.errors.full_messages.any?
   end
 
   def flash_class(level)

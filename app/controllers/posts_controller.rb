@@ -35,7 +35,14 @@ class PostsController < ApplicationController
     end
   end
 
-  def destroy; end
+  def destroy
+    if @post.destroy
+      redirect_to action: :index
+    else
+      flash_resource @post
+      redirect_back fallback_location: @post
+    end
+  end
 
   private
 

@@ -7,7 +7,10 @@
       </div>
       <% unless defined? skip_op_button %>
         <div class="op_button_group">
-          <%= link_to 'Delete', commentable_comment_path(comment.commentable, comment), method: :delete, class: "btn-sm btn-danger" if can? :destroy, comment %>
+          <%= link_to 'Delete', commentable_comment_path(comment.commentable, comment),
+                      method: :delete,
+                      class: "btn-sm btn-danger",
+                      data: { confirm: t("comment.delete_confirm") } if can? :destroy, comment %>
         </div>
       <% end %>
     </div>
