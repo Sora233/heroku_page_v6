@@ -1,4 +1,5 @@
 <%= render "shared/page_title", page_title: "User List" %>
 <ul>
-  <%= render partial: 'admins/users/user', collection: @posts, cache: true %>
+  <%= render partial: 'admins/users/user', collection: @users, cache: true %>
 </ul>
+<%= paginate @users %>
