@@ -1,13 +1,13 @@
 <%= render 'shared/page_title', page_title: "Log in" %>
 <%= simple_form_for(@user, :url => user_session_path, :html => { :class => 'form-horizontal' }) do |f| %>
-  <%= f.input :username, placeholder: "username" %>
+  <%= f.input :username, required: true, autofocus: true, placeholder: "username", input_html: { autocomplete: "username" } %>
   <%= f.input :password, required: true, placeholder: "password" %>
 
   <div class="form-group">
     <%= render "shared/captcha", f: f %>
   </div>
   <% if devise_mapping.rememberable? -%>
-    <%= f.input :remember_me,  as: :boolean %>
+    <%= f.input :remember_me, as: :boolean %>
   <% end -%>
 
   <div class="actions">

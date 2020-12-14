@@ -1,13 +1,13 @@
 <%= render 'shared/page_title', page_title: "Sign up" %>
-<%= simple_form_for(@user, :url => user_registration_path, :html => {:class => 'form-horizontal' }) do |f| %>
-  <%= f.input :username %>
-  <%= f.input :email %>
+<%= simple_form_for(@user, :url => user_registration_path, :html => { :class => 'form-horizontal' }) do |f| %>
+  <%= f.input :username, autofocus: true, required: true %>
+  <%= f.input :email, required: true %>
   <%= f.input :password, required: true %>
   <%= f.input :password_confirmation, required: true %>
   <div class="form-group">
     <%= render "shared/captcha", f: f %>
   </div>
-    <%= f.button :submit, "Sign up", class: "btn btn-primary" %>
+  <%= f.button :submit, "Sign up", class: "btn btn-primary" %>
 <% end %>
 
 <%= render "users/shared/links" %>
