@@ -1,22 +1,20 @@
 <%= render 'shared/page_title', page_title: @post.title %>
-<% cache @post do %>
-  <div class="form-group d-flex flex-row justify-content-between">
-    <div class="flex-grow-1">
-      <h5>By: <%= link_to_if @post.user, @post.username, (user_path(@post.user) rescue '#') %></h5>
+<div class="form-group d-flex flex-row justify-content-between">
+  <div class="flex-grow-1">
+    <h5>By: <%= link_to_if @post.user, @post.username, (user_path(@post.user) rescue '#') %></h5>
+  </div>
+  <div class="op_button_group">
+    <div>
+      <%= link_to "Edit", edit_post_path(@post), class: "btn btn-primary" if can? :modify, @post %>
     </div>
-    <div class="op_button_group">
-      <div>
-        <%= link_to "Edit", edit_post_path(@post), class: "btn btn-primary" if can? :modify, @post %>
-      </div>
-      <div>
-        <%= link_to "Delete", post_path(@post), method: :delete, data: { confirm: t("post.delete.confirm") }, class: "btn btn-danger" if can? :destroy, @post %>
-      </div>
+    <div>
+      <%= link_to "Delete", post_path(@post), method: :delete, data: { confirm: t("post.delete.confirm") }, class: "btn btn-danger" if can? :destroy, @post %>
     </div>
   </div>
-  <div class="form-group mb-4 p-4 border">
-    <%= @post.content %>
-  </div>
-<% end %>
+</div>
+<div class="form-group mb-4 p-4 border">
+  <%= @post.content %>
+</div>
 <div class="form-group">
   <%= render "comments/comments" %>
 </div>

@@ -1,11 +1,9 @@
 <%= render 'shared/page_title', page_title: "User Profile" %>
 <ul>
-  <% cache @user do %>
-    <li>Username: <%= @user.username %></li>
-    <li>Email: <%= @user.email %></li>
-    <li>Role: <%= @user.role %></li>
-    <li>Registered <%= @user.created_at %></li>
-  <% end %>
+  <li>Username: <%= @user.username %></li>
+  <li>Email: <%= @user.email %></li>
+  <li>Role: <%= @user.role %></li>
+  <li>Registered <%= @user.created_at %></li>
   <% if can? :admin_show, @user %>
     <li>Login Count: <%= @user.sign_in_count %></li>
     <li>IP: <%= @user.current_sign_in_ip %></li>
