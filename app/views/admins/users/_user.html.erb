@@ -1,7 +1,7 @@
 <li>
   <div class="p-2">
     <%= link_to user.username, user_path(user) %>
-    <%= link_to 'Disable', disable_admins_user_path(user), data: { confirm: t("user.disable.confirm") }, method: :patch, class: "btn-sm btn-primary" if can? :disable, user %>
-    <%= link_to 'Enable', enable_admins_user_path(user), data: { confirm: t("user.enable.confirm") }, method: :patch, class: "btn-sm btn-danger" if can? :enable, user %>
+    <%= link_to 'Disable', disable_admins_user_path(user), data: { confirm: t("user.disable.confirm") }, method: :patch, class: "btn-sm btn-danger" if can? :disable, user %>
+    <%= link_to 'Enable', enable_admins_user_path(user), data: { confirm: t("user.enable.confirm") }, method: :patch, class: "btn-sm btn-primary" if can? :enable, user %>
   </div>
 </li>
