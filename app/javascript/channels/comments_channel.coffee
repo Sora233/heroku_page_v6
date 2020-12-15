@@ -6,10 +6,8 @@ $(document).on 'turbolinks:load', ->
       collection: -> $("[data-channel='comments']")
 
       connected: ->
-        setTimeout =>
-          @followCurrentPost()
-          @pageChangeCallback()
-        , 1000
+        @followCurrentPost()
+        @pageChangeCallback()
 
       received: (data) ->
         $(".empty-comment").remove()
