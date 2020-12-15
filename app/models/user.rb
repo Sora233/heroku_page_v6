@@ -1,14 +1,7 @@
 class User < ApplicationRecord
   rolify strict: true
 
-  scope :disabled, -> { where(disabled: false) }
-
-  include ActiveModel::Validations
-
-  validates :username, presence: true, uniqueness: true
-  validates :email, presence: true, uniqueness: true
-  validates :password, presence: true, on: [:create, :update]
-  validates :password_confirmation, presence: true, on: [:create, :update]
+  scope :disabled, -> { where(disabled: true) }
 
   include UsersHelper
 
@@ -17,12 +10,20 @@ class User < ApplicationRecord
                           join_table: "users_blockship",
                           association_foreign_key: "block_user_id"
 
-  has_many :posts, :dependent => :nullify
-  has_many :comments
+  has_many :posts, :dependent => :destroy
+  has_many :comments, :dependent => :destroy
 
   devise :database_authenticatable, :registerable,
          :recoverable, :confirmable, :rememberable,
          :validatable, :lockable, :trackable
+
+  include ActiveModel::Validations
+
+  validates :username, presence: true, uniqueness: true
+  validates :email, presence: true, uniqueness: true
+  validates_presence_of :password, if: :password_required? # recommended
+  validates_confirmation_of :password, if: :password_required? # recommended
+  validates_length_of :password, within: password_length, allow_blank: true # recommended
 
   after_create :assign_default_role
 

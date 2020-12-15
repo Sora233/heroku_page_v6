@@ -4,12 +4,40 @@ module ApplicationHelper
       &.per(params[Kaminari.config.default_per_page]&.to_i)
   end
 
+  def flash_alert(msg)
+    flash[:alert] ||= []
+    flash[:alert] << msg
+    flash[:alert].uniq!
+  end
+
+  def flash_alert_now(msg)
+    flash.now[:alert] ||= []
+    flash.now[:alert] << msg
+    flash.now[:alert].uniq!
+  end
+
+  def flash_notice(msg)
+    flash[:notice] ||= []
+    flash[:notice] << msg
+    flash[:notice].uniq!
+  end
+
+  def flash_notice_now(msg)
+    flash.now[:notice] ||= []
+    flash.now[:notice] << msg
+    flash.now[:notice].uniq!
+  end
+
   def flash_resource(resource)
-    flash.alert = resource.errors.full_messages.to_sentence if resource.errors.full_messages.any?
+    flash[:alert] ||= []
+    flash[:alert] += resource.errors.full_messages if resource.errors.full_messages.any?
+    flash[:alert].uniq!
   end
 
   def flash_resource_now(resource)
-    flash.now.alert = resource.errors.full_messages.to_sentence if resource.errors.full_messages.any?
+    flash.now[:alert] ||= []
+    flash.now[:alert] += resource.errors.full_messages if resource.errors.full_messages.any?
+    flash.now[:alert].uniq!
   end
 
   def flash_class(level)
@@ -40,6 +68,22 @@ module ApplicationHelper
       end
     end
     false
+  end
+
+  def current_role
+    current_user&.role rescue nil
+  end
+
+  def current_admin?
+    current_role == :admin
+  end
+
+  def current_user?
+    current_user == :user
+  end
+
+  def current_anonymous?
+    current_user == nil
   end
 
 end

@@ -7,7 +7,6 @@ class Users::SessionsController < Devise::SessionsController
   prepend_before_action :valify_captcha!, only: [:create]
 
   def valify_captcha!
-    @user = User.new(user_params)
     unless verify_rucaptcha?
       render :new, alert: t('rucaptcha.invalid')
       return

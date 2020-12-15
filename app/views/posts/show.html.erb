@@ -3,7 +3,7 @@
   <div class="flex-grow-1">
     <h5>By: <%= link_to_if @post.user, @post.username, (user_path(@post.user) rescue '#') %></h5>
   </div>
-  <div class="op_button_group">
+  <div class="op-button-group">
     <div>
       <%= link_to "Edit", edit_post_path(@post), class: "btn btn-primary" if can? :modify, @post %>
     </div>

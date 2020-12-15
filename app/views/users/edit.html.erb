@@ -1,0 +1,10 @@
+<%= render 'shared/page_title', page_title: "Edit Profile" %>
+<%= simple_form_for(@user, :url => user_path(@user), :html => { :class => 'form-horizontal' }) do |f| %>
+  <%= f.input :username, autofocus: true, required: true, disabled: true %>
+  <%= f.input :email, required: true %>
+  <div class="form-group">
+    <%= render "shared/captcha", f: f %>
+  </div>
+  <%= f.button :submit, "Save", data: { confirm: t("user.update.confirm") }, class: "btn btn-primary" %>
+<% end %>
+

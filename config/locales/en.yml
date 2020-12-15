@@ -38,6 +38,12 @@ en:
     unblock:
       confirm: "This action can not be undone, Are you sure?"
     canceled_name: "User Canceled"
+    update:
+      success: "Email Update Success. You need reconfirmation your account."
+      confirm: "You can NOT log in until new email confirmed, Are you sure?"
+    destroy:
+      confirm: "All your data will be destroyed and can not undo, Are you sure?"
+      success: "Your account has been destroy. Have a nice day."
   post:
     update:
       success: "Success"

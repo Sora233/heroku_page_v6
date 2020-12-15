@@ -32,13 +32,13 @@
   @extend .mb-2;
 }
 
-.op_button_group {
+.op-button-group {
   @extend .d-flex;
   @extend .flex-row;
   @extend .justify-content-end;
 }
 
-.op_button_group {
+.op-button-group {
   div {
     @extend .pl-4
   }

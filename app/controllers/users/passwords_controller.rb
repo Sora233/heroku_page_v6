@@ -3,18 +3,15 @@
 class Users::PasswordsController < Devise::PasswordsController
   include DeviseHelper
 
-  def create
-    self.resource = resource_class.find_or_initialize_with_errors(Devise.reset_password_keys, resource_params, :not_found)
-    if self.resource.persisted? && verify_rucaptcha?(resource)
-      self.resource.send_reset_password_instructions
-    end
+  prepend_before_action :valify_captcha!, only: [:create]
 
-    yield resource if block_given?
-
-    if successfully_sent?(resource)
-      respond_with({}, location: after_sending_reset_password_instructions_path_for(resource_name))
-    else
-      respond_with(resource)
+  def valify_captcha!
+    unless verify_rucaptcha?
+      flash_alert t("rucaptcha.invalid")
+      redirect_to action: :new
+      return
     end
+    true
   end
+
 end

@@ -1,8 +1,8 @@
-<% if defined?(resource) && resource&.errors&.full_messages&.any? %>
+<% if defined?(resource) && resource.errors.full_messages.any? %>
   <% flash_resource(resource) %>
 <% end %>
 <% flash.each do |key, value| %>
-  <% if value.class == Array %>
+  <% if value.class == Array && value.any? %>
     <div class="<%= flash_class(key) %>">
       <button type="button" class="btn btn-default" data-dismiss="alert">&times;</button>
       <% value.each do |message| %>

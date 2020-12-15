@@ -1,7 +1,12 @@
 <%= render 'shared/page_title', page_title: "User Profile" %>
 <ul>
   <li>Username: <%= @user.username %></li>
-  <li>Email: <%= @user.email %></li>
+  <% if @user.unconfirmed_email.present? %>
+    <li>Previous Email: <%= @user.email %></li>
+    <li>New Email: <%= @user.unconfirmed_email %> (Unconfirmed)</li>
+  <% else %>
+    <li>Email: <%= @user.email %></li>
+  <% end %>
   <li>Role: <%= @user.role %></li>
   <li>Registered <%= @user.created_at %></li>
   <% if can? :admin_show, @user %>
@@ -9,3 +14,15 @@
     <li>IP: <%= @user.current_sign_in_ip %></li>
   <% end %>
 </ul>
+<div class="op-button-group">
+  <div>
+    <%= link_to 'Edit Profile', edit_user_path(@user), class: "btn btn-primary" if can? :modify, @user %>
+  </div>
+  <div>
+    <%= link_to 'Cancel Account',
+                user_path(@user),
+                method: :delete,
+                data: { confirm: t("user.destroy.confirm") },
+                class: "btn btn-danger" if !current_admin? && can?(:modify, @user) %>
+  </div>
+</div>
