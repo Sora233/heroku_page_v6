@@ -86,4 +86,12 @@ module ApplicationHelper
     current_user == nil
   end
 
+  def load_channel
+    case controller_name.to_s.downcase
+    when 'posts'
+      ['channels'] if action_name.to_s.downcase == 'show'
+    else
+      []
+    end
+  end
 end

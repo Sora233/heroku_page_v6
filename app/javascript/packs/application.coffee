@@ -6,7 +6,6 @@
 require("@rails/ujs").start()
 require("turbolinks").start()
 require("@rails/activestorage").start()
-require("channels")
 require("bootstrap")
 require("trix")
 require("@rails/actiontext")
@@ -24,7 +23,7 @@ import "../stylesheets/application.scss"
 
 import "./admins"
 import "./home"
-import "./admin/users"
+import "./admins/users"
 import "./posts"
 import "./users"
 import "./profile/posts"

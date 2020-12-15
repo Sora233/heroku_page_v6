@@ -8,8 +8,8 @@
 
   <%= favicon_pack_tag 'star.ico' %>
 
-  <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <%= stylesheet_packs_with_chunks_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_packs_with_chunks_tag 'application', *load_channel, 'data-turbolinks-track': 'reload' %>
 </head>
 
 <body>

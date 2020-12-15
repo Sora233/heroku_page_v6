@@ -11,5 +11,6 @@ environment.plugins.prepend('Provide',
         Popper: ['popper.js', 'default'],
 }),
 )
+environment.splitChunks()
 
 module.exports = environment
