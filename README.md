@@ -1,24 +1,8 @@
-# README
+# Heroku Blog
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A heroku based blog, build with Rails 6.
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Env
+- ruby 2.6.6
+- rails6 with active cable
+- webpacker for coffee + scss 
