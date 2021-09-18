@@ -36,7 +36,7 @@ Rails.application.configure do
   # config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for NGINX
 
   # Store uploaded files on the local file system (see config/storage.yml for options).
-  config.active_storage.service = :amazon
+  config.active_storage.service = :tencent
 
   # Mount Action Cable outside main process or domain.
   # config.action_cable.mount_path = nil
@@ -44,7 +44,7 @@ Rails.application.configure do
   # config.action_cable.allowed_request_origins = [ 'http://example.com', /http:\/\/example.*/ ]
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
-  config.force_ssl = true
+  config.force_ssl = false
 
   # Use the lowest log level to ensure availability of diagnostic information
   # when problems arise.
@@ -56,7 +56,7 @@ Rails.application.configure do
   # Use a different cache store in production.
   # config.cache_store = :mem_cache_store
   config.cache_store = :redis_cache_store, {
-    url: ENV['REDISCLOUD_URL'],
+    url: ENV['REDIS_URL'],
     connect_timeout: 30, # Defaults to 20 seconds
     reconnect_attempts: 1, # Defaults to 0
   }
@@ -72,7 +72,7 @@ Rails.application.configure do
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
   config.action_mailer.raise_delivery_errors = false
-  config.action_mailer.default_url_options = { host: 'sora-heroku-v6.herokuapp.com' }
+  config.action_mailer.default_url_options = { host: 'sora233.me' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     :address => "smtpdm.aliyun.com",

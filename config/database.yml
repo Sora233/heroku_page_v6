@@ -19,6 +19,5 @@ test:
 
 production:
   <<: *default
-  database: heroku_page_production
-  username: heroku_page
-  password: <%= ENV['HEROKU_PAGE_DATABASE_PASSWORD'] %>
+  url: <%= ENV['PG_URL'] %>
+  database: heroku_page
