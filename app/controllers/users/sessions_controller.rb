@@ -8,7 +8,10 @@ class Users::SessionsController < Devise::SessionsController
 
   def valify_captcha!
     unless verify_rucaptcha?
-      render :new, alert: t('rucaptcha.invalid')
+      flash_alert t("rucaptcha.invalid")
+      @user = User.new(user_params)
+      @user.password = nil
+      render :new
       return
     end
     true

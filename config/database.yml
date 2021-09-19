@@ -1,12 +1,12 @@
 default: &default
   adapter: postgresql
   encoding: unicode
+  url: <%= ENV['PG_URL'] %>
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   timeout: 5000
 
 development:
   <<: *default
-  url: postgres://postgres@localhost
   database: heroku_page_development
 
 # Warning: The database defined as "test" will be erased and
@@ -14,10 +14,8 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  url: postgres://postgres@localhost
   database: heroku_page_test
 
 production:
   <<: *default
-  url: <%= ENV['PG_URL'] %>
   database: heroku_page

@@ -15,9 +15,12 @@ Rails.application.configure do
   # Enable caching.
   config.action_controller.perform_caching = true
   config.cache_store = :redis_cache_store, {
-    url: 'redis://localhost:6379',
+    url: ENV['REDIS_URL'],
     connect_timeout: 30, # Defaults to 20 seconds
     reconnect_attempts: 1, # Defaults to 0
+    error_handler: -> (method:, returning:, exception:) {
+      raise exception
+    }
   }
 
   # Store uploaded files on the local file system (see config/storage.yml for options).

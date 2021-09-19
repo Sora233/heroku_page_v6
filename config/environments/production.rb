@@ -59,6 +59,9 @@ Rails.application.configure do
     url: ENV['REDIS_URL'],
     connect_timeout: 30, # Defaults to 20 seconds
     reconnect_attempts: 1, # Defaults to 0
+    error_handler: -> (method:, returning:, exception:) {
+      raise exception
+    }
   }
 
   # Use a real queuing backend for Active Job (and separate queues per environment).

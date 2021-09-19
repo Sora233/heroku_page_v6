@@ -5,7 +5,7 @@
   </div>
   <div class="op-button-group">
     <div>
-      <%= link_to "Edit", edit_post_path(@post), class: "btn btn-primary" if can? :modify, @post %>
+      <%= link_to "Edit", edit_post_path(@post), class: "btn btn-primary" if can? :update, @post %>
     </div>
     <div>
       <%= link_to "Delete", post_path(@post), method: :delete, data: { confirm: t("post.delete.confirm") }, class: "btn btn-danger" if can? :destroy, @post %>
